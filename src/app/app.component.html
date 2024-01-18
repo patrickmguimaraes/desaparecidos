@@ -1,0 +1,8 @@
+<div *ngIf="loadingService.loading" id="loader" style="z-index: 10000;">
+    <div class="row" style="width: 80%; max-width: 700px; text-align: center;">
+        <img src="./../assets/images/logo.png" style="width: 100%;">
+        <span class="loadingBottom"></span>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

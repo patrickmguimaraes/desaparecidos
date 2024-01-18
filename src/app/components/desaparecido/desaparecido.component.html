@@ -1,0 +1,28 @@
+<mat-card style="height: 100%;">
+
+    <mat-card-header style="width: 100%;">
+        <mat-card-title class="title"><a
+                style="text-align: center; margin-left: auto; margin-right: auto; cursor: pointer;"
+                [routerLink]="['desaparecido/' + desaparecido.id]">{{desaparecido.nome}}</a></mat-card-title>
+        <mat-card-subtitle>IDADE: {{desaparecido.idade}}</mat-card-subtitle>
+        <mat-card-subtitle>SEXO: {{desaparecido.sexo}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content #pic style="padding-top: 10px; margin-bottom: 0px; margin-top: auto;">
+        <a class="picture" [routerLink]="['desaparecido/' + desaparecido.id]" style="cursor: pointer;">
+            <img class="picture" [src]="desaparecido.urlFoto">
+        </a>
+    </mat-card-content>
+
+    <mat-card-actions class="row" style="margin-bottom: 0px; margin-top: auto; margin-left: 5px; margin-right: 5px;">
+        <share-buttons class="col-12" style="margin-left: auto; margin-right: auto; text-align: center !important;"
+            [theme]="'default'" [include]="['facebook','twitter','whatsapp','email','copy']" [url]="url"
+            [description]="description" [tags]="tags">
+        </share-buttons>
+
+        <a type="button" class="col-12" color="primary" mat-raised-button style="margin-top: 10px; width: 100%; cursor: pointer;"
+            [routerLink]="['desaparecido/' + desaparecido.id]">
+            Mais Detalhes
+        </a>
+    </mat-card-actions>
+</mat-card>

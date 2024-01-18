@@ -1,0 +1,68 @@
+<div class="gdlr-core-pbf-wrapper " style="padding: 50px 0px 50px 0px;">
+  <div class="gdlr-core-pbf-background-wrap">
+    <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-color: #aaaaaa;"
+      data-parallax-speed="0"></div>
+  </div>
+  <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+    <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+      <div class="gdlr-core-pbf-element">
+        <div class="gdlr-core-portfolio-item gdlr-core-item-pdb clearfix  gdlr-core-portfolio-item-style-modern gdlr-core-item-pdlr">
+          
+          <h3 class="gdlr-core-title-item-title gdlr-core-skin-title"
+            style="font-size: 4vw; font-weight: 600 ;letter-spacing: 0px ;text-transform: none ;color: #ffffff ; text-align: center; width: 100%;">
+            Lista de Desaparecidos</h3>
+
+          <div class="row">
+            <mat-form-field class="col-md-3 col-12 form-group">
+              <mat-label>NOME</mat-label>
+              <input [(ngModel)]="nome" matInput type="text">
+            </mat-form-field>
+
+            <mat-form-field class="col-md-2 col-12 form-group">
+              <mat-label>IDADE MIN</mat-label>
+              <input [(ngModel)]="idadeMin" matInput type="text">
+            </mat-form-field>
+
+            <mat-form-field class="col-md-2 col-12 form-group">
+              <mat-label>IDADE MAX</mat-label>
+              <input [(ngModel)]="idadeMax" matInput type="text">
+            </mat-form-field>
+
+            <mat-form-field class="col-md-3 col-12 form-group">
+              <mat-label>SEXO</mat-label>
+              <mat-select [(ngModel)]="sexo">
+                <mat-option value="MASCULINO">MASCULINO</mat-option>
+                <mat-option value="FEMININO">FEMININO</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" class="col-md-2 col-12" style="height: 57px;" (click)="mudarPagina(pagina*-1)">
+              FILTRAR
+            </button>
+          </div>
+
+          <div class="row row-equal" *ngIf="result">
+            @for (item of result.content; track $index) {
+            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12 col-equal" style="padding: 5px;">
+              <app-desaparecido [desaparecido]="item" style="height: 100%;"></app-desaparecido>
+            </div>
+            }
+          </div>
+
+          <div class="paginator">
+            <button mat-raised-button [disabled]="result && result.first" (click)="mudarPagina(-1)">
+              Anterior
+            </button>
+
+            <label style="margin-left: 10px; color: black;">{{pagina+1}} de {{result ? result.totalPages : 0}}</label>
+
+            <button mat-raised-button style="margin-left: 10px;" [disabled]="result && result.last"
+              (click)="mudarPagina(1)">
+              Próximo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

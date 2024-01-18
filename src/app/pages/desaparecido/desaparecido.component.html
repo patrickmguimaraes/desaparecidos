@@ -1,0 +1,113 @@
+<mat-card style="height: 100%; width: 100%; border: none; box-shadow: none !important;" *ngIf="desaparecido">
+    <mat-card-header style="width: 100%; background-color: rgb(170, 170, 170);">
+        <mat-card-title class="title">
+            <a type="button" mat-raised-button [routerLink]="['']" style="margin-right: 15px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                </svg>
+            </a>
+
+            {{desaparecido.nome}} - ID: {{desaparecido.id}}
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content style="padding-top: 20px;">
+        <div class="row" style="row-gap: 15px;">
+            <div class="col-md-6 col-12 order-1">
+                <img class="picture" [src]="desaparecido.urlFoto">
+            </div>
+
+            <div class="col-md-6 col-12 order-2">
+                <div class="row">
+                    <mat-form-field class="col-md-3 col-12 form-group">
+                        <mat-label>IDADE</mat-label>
+                        <input [value]="desaparecido.idade" matInput type="text" disabled>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-md-6 col-12 form-group">
+                        <mat-label>SEXO</mat-label>
+                        <mat-select [value]="desaparecido.sexo" disabled>
+                            <mat-option value="MASCULINO">MASCULINO</mat-option>
+                            <mat-option value="FEMININO">FEMININO</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-md-3 col-12 form-group">
+                        <mat-label>VIVO(A)</mat-label>
+                        <mat-select [value]="desaparecido.vivo" disabled>
+                            <mat-option [value]="true">SIM</mat-option>
+                            <mat-option [value]="false">NÃO</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="card custom-card" *ngIf="desaparecido.ultimaOcorrencia">
+                    <div class="card-header justify-content-between">
+                        <div class="card-title" style="margin-top: 10px;">
+                            ÚLTIMA OCORRÊNCIA
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <mat-form-field class="col-md-4 col-12 form-group">
+                                <mat-label>ID</mat-label>
+                                <input [value]="desaparecido.ultimaOcorrencia.ocoId" matInput type="text" disabled>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-4 col-12 form-group">
+                                <mat-label>DATA DO DESAPARECIMENTO</mat-label>
+                                <input [value]="desaparecido.ultimaOcorrencia.dtDesaparecimento | date: 'dd/MM/YYYY'"
+                                    matInput type="text" disabled>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-4 col-12 form-group">
+                                <mat-label>ENCONTRADO(A) VIVO(A)</mat-label>
+                                <mat-select [value]="desaparecido.ultimaOcorrencia.encontradoVivo" disabled>
+                                    <mat-option [value]="true">SIM</mat-option>
+                                    <mat-option [value]="false">NÃO</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-12 col-12 form-group">
+                                <mat-label>LOCAL DO DESAPARECIMENTO</mat-label>
+                                <input [value]="desaparecido.ultimaOcorrencia.localDesaparecimentoConcat" matInput
+                                    type="text" disabled>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-12 col-12 form-group"
+                                *ngIf="desaparecido.ultimaOcorrencia.ocorrenciaEntrevDesapDTO">
+                                <mat-label>INFORMAÇÕES</mat-label>
+                                <textarea [value]="desaparecido.ultimaOcorrencia.ocorrenciaEntrevDesapDTO.informacao"
+                                    matInput disabled></textarea>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-12 col-12 form-group"
+                                *ngIf="desaparecido.ultimaOcorrencia.ocorrenciaEntrevDesapDTO">
+                                <mat-label>VESTIMENTAS DO(A) DESAPARECIDO(A)</mat-label>
+                                <textarea
+                                    [value]="desaparecido.ultimaOcorrencia.ocorrenciaEntrevDesapDTO.vestimentasDesaparecido"
+                                    matInput disabled></textarea>
+                            </mat-form-field>
+
+                            @for (item of desaparecido.ultimaOcorrencia.listaCartaz; track $index) {
+                                <div class="col-4">
+                                    <img class="cartaz" [src]="item.urlCartaz" [lang]="item.tipoCartaz">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+
+    <mat-card-actions style="margin-left: auto; margin-right: auto; margin-bottom: 0px; margin-top: auto; text-align: center;">
+        <label>COMPARTILHE:</label>
+        <share-buttons style="margin-left: auto; margin-right: auto; text-align: center !important;"
+            [theme]="'default'" [include]="['facebook','twitter','whatsapp','email','copy']" [url]="url"
+            [description]="description" [tags]="tags">
+        </share-buttons>
+    </mat-card-actions>
+</mat-card>

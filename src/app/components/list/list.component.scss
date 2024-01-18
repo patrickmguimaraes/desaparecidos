@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+}
+
+.paginator {
+    text-align: right;
+    width: 100%;
+    margin-right: 0px;
+    margin-left: auto;
+    margin-top: 15px;
+}
+
+.row-equal {
+    display: flex !important;
+  }
+  
+  .col-equal {
+    height: inherit;
+  }
